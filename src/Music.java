@@ -29,6 +29,28 @@ public class Music {
 
 	}
 
+	public void addNewMusic() {
+		System.out.println("Adding new Music\nInform title:");
+		myObj = new Scanner(System.in);
+
+		String title = myObj.nextLine();
+
+		System.out.println("Inform genre:");
+		myObj = new Scanner(System.in);
+
+		String genre = myObj.nextLine();
+
+		System.out.println("Inform year of release (YYYY):");
+		myObj = new Scanner(System.in);
+
+		int yearOfRelease = myObj.nextInt();
+
+		Music newMusic = new Music(yearOfRelease, title, genre);
+		MusicList.add(newMusic);
+
+		System.out.println("New music title has been added");
+	}
+
 	protected void initMusicList() {
 		Music music1 = new Music(2019, "Luma Elpido", " Action ");
 		Music music2 = new Music(2018, "Trazendo a Arca", " Action ");
@@ -75,7 +97,7 @@ public class Music {
 
 			myObj = new Scanner(System.in);
 			System.out.println("Select Music by code");
-			
+
 			while (!myObj.hasNextInt())
 				myObj.next();
 

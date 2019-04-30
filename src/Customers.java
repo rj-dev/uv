@@ -28,36 +28,50 @@ public class Customers<T> extends MembershipCard {
 	protected void rentTitle(T title) {
 		if (canRentMore()) {
 			this.rented.add(title);
-			System.out.println(this.name + " has rented " +  Class.forName(title.getClass().toString()).newInstance() + " title");
+			addPoints(10);
+
+			if (isfreeRentAllowed()) {
+				myObj = new Scanner(System.in);
+				System.out.println("Due to the amount accumulated on your membership card,\n"
+						+ "you are entitled to receive one free rental.\nWould you like to use it? (y/n)");
+
+				if (myObj.nextLine().equals("y")) {
+					if (availFreeRent()) {
+						System.out.println("You have received a free rental");
+					}
+				}
+			}
+
+			System.out.println(this.name + " has rented " + Utils.fetchGenericInfo(title));
 		} else {
 			System.out.println("You can not rent more titles, return at least one!");
 		}
 	}
-	
+
 	protected void returnTitle() {
-		
+
 		for (int i = 0; i < this.rented.size(); i++) {
-			System.out.println((i + 1) + " -> " + this.rented.get(i));
+			System.out.println((i + 1) + " -> " + Utils.fetchGenericInfo(this.rented.get(i)));
 		}
-		
+
 		myObj = new Scanner(System.in);
 		System.out.println("Select a Title for devolution by code");
-		
+
 		while (!myObj.hasNextInt())
 			myObj.next();
-		
+
 		int titleCode = myObj.nextInt(); // Read user input
-		
-		if(titleCode == 0)
+
+		if (titleCode == 0)
 			return;
-		
+
 		if (titleCode > this.rented.size()) {
 			System.out.println("inform a valid code");
 		} else {
-			System.out.println("title selected for devolution is: " + this.rented.get(titleCode - 1));
-			this.rented.remove(titleCode);
+			System.out.println("title selected for devolution is: " + Utils.fetchGenericInfo(this.rented.get(titleCode - 1)));
+			this.rented.remove(titleCode - 1);
 		}
-		
+
 		System.out.println("Title returned, thank you!");
 	}
 
@@ -66,6 +80,22 @@ public class Customers<T> extends MembershipCard {
 	}
 
 	protected void initCustomersList() {
+		// JSONParser parser = new JSONParser();
+		// JSONArray arr = (JSONArray) parser.parse(new
+		// FileReader("../source/customers.json"));
+
+		// for (Object o : a) {
+		// JSONObject JSONcustomer = (JSONObject) o;
+
+		// String name = (String) JSONcustomer.get("name");
+		// AccessLevel accessLevel = (AccessLevel) JSONcustomer.get("accessLevel");
+
+		// Customers<T> customer = new Customers<T>(name, accessLevel);
+
+		// CustomersList.add(customer);
+
+		// }
+
 		Customers<T> customer1 = new Customers<T>("Joao", AccessLevel.ML);
 		Customers<T> customer2 = new Customers<T>("Maria", AccessLevel.ML);
 		Customers<T> customer3 = new Customers<T>("Carlos", AccessLevel.TV);
@@ -89,7 +119,7 @@ public class Customers<T> extends MembershipCard {
 	protected Customers<T> searchCustomers() {
 
 		while (true) {
-			
+
 			System.out.println("Inform the name of the customer for renting");
 			myObj = new Scanner(System.in);
 			String name = myObj.nextLine();
@@ -105,11 +135,11 @@ public class Customers<T> extends MembershipCard {
 		}
 
 	}
-	
+
 	protected Customers<T> searchCustomerRents() {
 
 		while (true) {
-			
+
 			System.out.println("Inform the name of the customer of the devolution");
 			myObj = new Scanner(System.in);
 			String name = myObj.nextLine();
@@ -120,22 +150,23 @@ public class Customers<T> extends MembershipCard {
 				for (int i = 0; i < ResultSearchCustomersWithRents.size(); i++) {
 					System.out.println((i + 1) + " -> " + ResultSearchCustomersWithRents.get(i).getName());
 				}
-				
+
 				myObj = new Scanner(System.in);
 				System.out.println("Select Customer by code");
-				
+
 				while (!myObj.hasNextInt())
 					myObj.next();
-				
+
 				int customerCode = myObj.nextInt(); // Read user input
 
 				if (customerCode > ResultSearchCustomersWithRents.size()) {
 					System.out.println("inform a valid code");
 				} else {
-					System.out.println("customer selected for devolution is: " + ResultSearchCustomersWithRents.get(customerCode - 1).getName());
+					System.out.println(
+							"customer selected for devolution is: " + ResultSearchCustomersWithRents.get(customerCode - 1).getName());
 					return ResultSearchCustomersWithRents.get(customerCode - 1);
 				}
-				
+
 			} else {
 				System.out.println("Customer - " + name + " - not found try another name");
 			}
@@ -151,12 +182,13 @@ public class Customers<T> extends MembershipCard {
 				System.out.println((i + 1) + " -> " + ResultSearchCustomer.get(i).getName());
 			}
 
-			myObj = new Scanner(System.in);
 			System.out.println("Select Customer by code");
-			
+			myObj = new Scanner(System.in);
 
-			while (!myObj.hasNextInt())
+			while (!myObj.hasNextInt()) {
+				System.out.println("Select Customer by code");
 				myObj.next();
+			}
 
 			int customerCode = myObj.nextInt(); // Read user input
 
