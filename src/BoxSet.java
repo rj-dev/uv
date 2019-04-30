@@ -1,5 +1,5 @@
-import java.awt.List;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class BoxSet {
@@ -7,12 +7,27 @@ public class BoxSet {
 	private int YearofRelease;
 	private String Title;
 	private String Genre;
+	private String dataOfRent;
 
 	private ArrayList<BoxSet> BoxSetList = new ArrayList<>();
 	private static Scanner myObj;
 
 	BoxSet() {
 
+	}
+
+	/**
+	 * @return the dataOfRent
+	 */
+	public String getDataOfRent() {
+		return dataOfRent;
+	}
+
+	/**
+	 * @param dataOfRent the dataOfRent to set
+	 */
+	public void setDataOfRent(String dataOfRent) {
+		this.dataOfRent = dataOfRent;
 	}
 
 	BoxSet(int YearofRelease, String Title, String Genre) {

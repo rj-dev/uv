@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -9,12 +10,27 @@ public class Movie {
 	private String Title;
 	private String Genre;
 	private String Director;
+	private String dataOfRent;
 
 	private ArrayList<Movie> MovieList = new ArrayList<>();
 	private static Scanner myObj;
 
 	protected Movie() {
 		initMovieList();
+	}
+
+	/**
+	 * @return the dataOfRent
+	 */
+	public String getDataOfRent() {
+		return dataOfRent;
+	}
+
+	/**
+	 * @param dataOfRent the dataOfRent to set
+	 */
+	public void setDataOfRent(String dataOfRent) {
+		this.dataOfRent = dataOfRent;
 	}
 
 	Movie(int YearofRelease, String Title, String Genre, String Director) {

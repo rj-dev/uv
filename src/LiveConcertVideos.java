@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -8,12 +9,27 @@ public class LiveConcertVideos {
 	private int YearOfRelease;
 	private String Title;
 	private String Band;
+	private String dataOfRent;
 
 	private ArrayList<LiveConcertVideos> LiveConcertVideosList = new ArrayList<>();
 	private static Scanner myObj;
 
 	LiveConcertVideos() {
+		initLiveConvertVideosList();
+	}
 
+	/**
+	 * @return the dataOfRent
+	 */
+	public String getDataOfRent() {
+		return dataOfRent;
+	}
+
+	/**
+	 * @param dataOfRent the dataOfRent to set
+	 */
+	public void setDataOfRent(String dataOfRent) {
+		this.dataOfRent = dataOfRent;
 	}
 
 	LiveConcertVideos(int YearOfRelease, String Title, String Band) {
@@ -64,35 +80,30 @@ public class LiveConcertVideos {
 		LiveConcertVideosList.add(movie4);
 		LiveConcertVideosList.add(movie5);
 
-		Scanner myObj = new Scanner(System.in);
+	}
+
+	protected LiveConcertVideos searchLiveConcertVideos() {
 
 		while (true) {
-
-			System.out.println("Inform the name of the movie");
+			System.out.println("Inform the name of the live concert");
+			myObj = new Scanner(System.in);
 
 			String term = myObj.nextLine();
 
-			List<LiveConcertVideos> ResultSearchLiveConcertVideos = searchLiveConcertVideos(term);
-			if (ResultSearchLiveConcertVideos.size() > 0) {
-				selectLiveConcertVideos(ResultSearchLiveConcertVideos);
-				break;
+			List<LiveConcertVideos> ResultSearchLiveConcert = LiveConcertVideosList.stream()
+					.filter(m -> m.getTitle().toLowerCase().contains(term)).collect(Collectors.toList());
+
+			if (ResultSearchLiveConcert.size() > 0) {
+				return selectLiveConcertVideos(ResultSearchLiveConcert);
 			} else {
-				System.out.println("Movie - " + term + " - not found try another name");
+				System.out.println("Live Concert - " + term + " - not found try another name");
 			}
 
 		}
 
 	}
 
-	protected List<LiveConcertVideos> searchLiveConcertVideos(String term) {
-
-		List<LiveConcertVideos> ResultSearchMovie = LiveConcertVideosList.stream()
-				.filter(m -> m.getTitle().toLowerCase().contains(term)).collect(Collectors.toList());
-
-		return ResultSearchMovie;
-	}
-
-	protected void selectLiveConcertVideos(List<LiveConcertVideos> ResultSearchLiveConcertVideos) {
+	protected LiveConcertVideos selectLiveConcertVideos(List<LiveConcertVideos> ResultSearchLiveConcertVideos) {
 
 		while (true) {
 			for (int i = 0; i < ResultSearchLiveConcertVideos.size(); i++) {
@@ -109,7 +120,7 @@ public class LiveConcertVideos {
 			} else {
 				System.out
 						.println("movied selected is: " + ResultSearchLiveConcertVideos.get(liveConcertVideosCode - 1).getTitle());
-				break;
+				return ResultSearchLiveConcertVideos.get(liveConcertVideosCode - 1);
 			}
 
 		}

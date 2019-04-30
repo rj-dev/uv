@@ -1,3 +1,5 @@
+import static java.lang.System.out;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -25,37 +27,81 @@ public class Customers<T> extends MembershipCard {
 		return this.name;
 	}
 
+	protected void addCustomer() {
+
+		out.println("Adding new Customer\nInform name:");
+		myObj = new Scanner(System.in);
+
+		String name = myObj.nextLine();
+
+		out.println("Inform subscription plan");
+		out.println("1 -> Music Lover");
+		out.println("2 -> Video Lover");
+		out.println("3 -> TV Lover");
+		out.println("4 -> Premium");
+
+		while (!myObj.hasNextInt())
+			myObj.next();
+
+		int accessLevelOption = myObj.nextInt();
+
+		while (accessLevelOption > 4)
+			accessLevelOption = myObj.nextInt();
+
+		AccessLevel al = AccessLevel.ML;
+		switch (accessLevelOption) {
+		case 2:
+			al = AccessLevel.VL;
+			break;
+		case 3:
+			al = AccessLevel.TV;
+			break;
+		case 4:
+			al = AccessLevel.PR;
+			break;
+		default:
+			break;
+		}
+
+		Customers<T> newCustomer = new Customers<T>(name, al);
+		CustomersList.add(newCustomer);
+
+		out.println("New customer " + name + " (" + al + ") has been added");
+
+	}
+
 	protected void rentTitle(T title) {
 		if (canRentMore()) {
+			// this.rented.add(Utils.addDateRent(title));
 			this.rented.add(title);
 			addPoints(10);
 
 			if (isfreeRentAllowed()) {
 				myObj = new Scanner(System.in);
-				System.out.println("Due to the amount accumulated on your membership card,\n"
+				out.println("Due to the amount accumulated on your membership card,\n"
 						+ "you are entitled to receive one free rental.\nWould you like to use it? (y/n)");
 
 				if (myObj.nextLine().equals("y")) {
 					if (availFreeRent()) {
-						System.out.println("You have received a free rental");
+						out.println("You have received a free rental");
 					}
 				}
 			}
 
-			System.out.println(this.name + " has rented " + Utils.fetchGenericInfo(title));
+			out.println(this.name + " has rented " + Utils.fetchGenericInfo(title));
 		} else {
-			System.out.println("You can not rent more titles, return at least one!");
+			out.println("You can not rent more titles, return at least one!");
 		}
 	}
 
 	protected void returnTitle() {
 
 		for (int i = 0; i < this.rented.size(); i++) {
-			System.out.println((i + 1) + " -> " + Utils.fetchGenericInfo(this.rented.get(i)));
+			out.println((i + 1) + " -> " + Utils.fetchGenericInfo(this.rented.get(i)));
 		}
 
 		myObj = new Scanner(System.in);
-		System.out.println("Select a Title for devolution by code");
+		out.println("Select a Title for devolution by code");
 
 		while (!myObj.hasNextInt())
 			myObj.next();
@@ -66,13 +112,13 @@ public class Customers<T> extends MembershipCard {
 			return;
 
 		if (titleCode > this.rented.size()) {
-			System.out.println("inform a valid code");
+			out.println("inform a valid code");
 		} else {
-			System.out.println("title selected for devolution is: " + Utils.fetchGenericInfo(this.rented.get(titleCode - 1)));
+			out.println("title selected for devolution is: " + Utils.fetchGenericInfo(this.rented.get(titleCode - 1)));
 			this.rented.remove(titleCode - 1);
 		}
 
-		System.out.println("Title returned, thank you!");
+		out.println("Title returned, thank you!");
 	}
 
 	private boolean canRentMore() {
@@ -120,7 +166,7 @@ public class Customers<T> extends MembershipCard {
 
 		while (true) {
 
-			System.out.println("Inform the name of the customer for renting");
+			out.println("Inform the name of the customer for renting");
 			myObj = new Scanner(System.in);
 			String name = myObj.nextLine();
 
@@ -129,7 +175,7 @@ public class Customers<T> extends MembershipCard {
 			if (ResultSearchCustomer.size() > 0) {
 				return selectCustomer(ResultSearchCustomer);
 			} else {
-				System.out.println("Customer - " + name + " - not found try another name");
+				out.println("Customer - " + name + " - not found try another name");
 			}
 
 		}
@@ -140,19 +186,28 @@ public class Customers<T> extends MembershipCard {
 
 		while (true) {
 
-			System.out.println("Inform the name of the customer of the devolution");
+			out.println("Inform the name of the customer of the devolution");
 			myObj = new Scanner(System.in);
 			String name = myObj.nextLine();
 
-			List<Customers<T>> ResultSearchCustomersWithRents = CustomersList.stream()
-					.filter(c -> c.getName().toLowerCase().contains(name) && c.rented.size() > 0).collect(Collectors.toList());
+			List<Customers<T>> ResultSearchCustomersWithRents = CustomersList.stream().filter(c -> c.rented.size() > 0)
+					.collect(Collectors.toList());
+
+			if (ResultSearchCustomersWithRents.size() == 0) {
+				out.println("No one has pending devolutions");
+				return null;
+			}
+
+			ResultSearchCustomersWithRents = ResultSearchCustomersWithRents.stream()
+					.filter(c -> c.getName().toLowerCase().contains(name)).collect(Collectors.toList());
+
 			if (ResultSearchCustomersWithRents.size() > 0) {
 				for (int i = 0; i < ResultSearchCustomersWithRents.size(); i++) {
-					System.out.println((i + 1) + " -> " + ResultSearchCustomersWithRents.get(i).getName());
+					out.println((i + 1) + " -> " + ResultSearchCustomersWithRents.get(i).getName());
 				}
 
 				myObj = new Scanner(System.in);
-				System.out.println("Select Customer by code");
+				out.println("Select Customer by code");
 
 				while (!myObj.hasNextInt())
 					myObj.next();
@@ -160,15 +215,15 @@ public class Customers<T> extends MembershipCard {
 				int customerCode = myObj.nextInt(); // Read user input
 
 				if (customerCode > ResultSearchCustomersWithRents.size()) {
-					System.out.println("inform a valid code");
+					out.println("inform a valid code");
 				} else {
-					System.out.println(
+					out.println(
 							"customer selected for devolution is: " + ResultSearchCustomersWithRents.get(customerCode - 1).getName());
 					return ResultSearchCustomersWithRents.get(customerCode - 1);
 				}
 
 			} else {
-				System.out.println("Customer - " + name + " - not found try another name");
+				out.println("Customer - " + name + " - not found try another name");
 			}
 
 		}
@@ -179,31 +234,27 @@ public class Customers<T> extends MembershipCard {
 
 		while (true) {
 			for (int i = 0; i < ResultSearchCustomer.size(); i++) {
-				System.out.println((i + 1) + " -> " + ResultSearchCustomer.get(i).getName());
+				out.println((i + 1) + " -> " + ResultSearchCustomer.get(i).getName());
 			}
 
-			System.out.println("Select Customer by code");
+			out.println("Select Customer by code");
 			myObj = new Scanner(System.in);
 
 			while (!myObj.hasNextInt()) {
-				System.out.println("Select Customer by code");
+				out.println("Select Customer by code");
 				myObj.next();
 			}
 
 			int customerCode = myObj.nextInt(); // Read user input
 
 			if (customerCode > ResultSearchCustomer.size()) {
-				System.out.println("inform a valid code");
+				out.println("inform a valid code");
 			} else {
-				System.out.println("customer selected is: " + ResultSearchCustomer.get(customerCode - 1).getName());
+				out.println("customer selected is: " + ResultSearchCustomer.get(customerCode - 1).getName());
 				return ResultSearchCustomer.get(customerCode - 1);
 			}
 
 		}
-	}
-
-	protected void addCustomer(Customers<T> c) {
-		this.CustomersList.add(c);
 	}
 
 	public AccessLevel getLevel() {

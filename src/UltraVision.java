@@ -1,9 +1,7 @@
 public class UltraVision {
 
-	public void initSystem() {
-		Menu menu = new Menu();
-
-
+	public <T> void initSystem() {
+		new Menu<T>();
 	}
 
 }

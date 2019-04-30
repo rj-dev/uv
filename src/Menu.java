@@ -1,5 +1,3 @@
-import java.awt.List;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu<T> {
@@ -40,10 +38,14 @@ public class Menu<T> {
 				break;
 			case 2:
 				ctRent = returningTitle();
-				ctRent.returnTitle();
+				if (ctRent != null)
+					ctRent.returnTitle();
 				break;
 			case 3:
 				addNewTitle();
+				break;
+			case 4:
+				ct.addCustomer();
 				break;
 			default:
 				break;
@@ -92,7 +94,7 @@ public class Menu<T> {
 			case 1:
 				return (T) musics.searchMusic();
 			case 2:
-				break;
+				return (T) liveConcertVideos.searchLiveConcertVideos();
 			case 3:
 				return (T) movies.searchMovie();
 			case 4:
@@ -106,39 +108,36 @@ public class Menu<T> {
 
 	private void addNewTitle() {
 
-		while (true) {
-			System.out.println("===========================================");
-			System.out.println("| What type of title do you want to add?  |");
-			System.out.println("| 1 -> Music			  |");
-			System.out.println("| 2 -> Live Concert Video 			  |");
-			System.out.println("| 3 -> Movie			  |");
-			System.out.println("| 4 -> Box Set			  |");
-			System.out.println("============================================");
+		System.out.println("===========================================");
+		System.out.println("| What type of title do you want to add?  |");
+		System.out.println("| 1 -> Music			  	  |");
+		System.out.println("| 2 -> Live Concert Video 		  |");
+		System.out.println("| 3 -> Movie			  	  |");
+		System.out.println("| 4 -> Box Set			  	  |");
+		System.out.println("============================================");
 
-			myObj = new Scanner(System.in);
+		myObj = new Scanner(System.in);
 
-			while (!myObj.hasNextInt())
-				myObj.next();
+		while (!myObj.hasNextInt())
+			myObj.next();
 
-			int option = myObj.nextInt();
+		int option = myObj.nextInt();
 
-			switch (option) {
-			case 1:
-				musics.addNewMusic();
-				break;
-			case 2:
-				liveConcertVideos.addNewLiveConcertVideo();
-				break;
-			case 3:
-				movies.addNewMovie();
-				break;
-			case 4:
-				boxSets.addNewBoxSet();
-				break;
-			default:
-				break;
-			}
-
+		switch (option) {
+		case 1:
+			musics.addNewMusic();
+			break;
+		case 2:
+			liveConcertVideos.addNewLiveConcertVideo();
+			break;
+		case 3:
+			movies.addNewMovie();
+			break;
+		case 4:
+			boxSets.addNewBoxSet();
+			break;
+		default:
+			return;
 		}
 
 	}

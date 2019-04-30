@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -8,12 +9,27 @@ public class Music {
 	private int YearofRelease;
 	private String Title;
 	private String Genre;
+	private String dataOfRent;
 
 	private ArrayList<Music> MusicList = new ArrayList<>();
 	private static Scanner myObj;
 
 	Music() {
 		initMusicList();
+	}
+
+	/**
+	 * @return the dataOfRent
+	 */
+	public String getDataOfRent() {
+		return dataOfRent;
+	}
+
+	/**
+	 * @param dataOfRent the dataOfRent to set
+	 */
+	public void setDataOfRent(String dataOfRent) {
+		this.dataOfRent = dataOfRent;
 	}
 
 	Music(int YearofRelease, String Title, String Genre) {
