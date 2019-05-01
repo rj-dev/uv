@@ -34,7 +34,12 @@ public class Menu<T> {
 			switch (option) {
 			case 1:
 				ctRent = rentingTitle();
-				ctRent.rentTitle(titles(ctRent));
+				if (ctRent != null) {
+					T titlesAllowed = titles(ctRent);
+					if (titlesAllowed != null)
+						ctRent.rentTitle(titlesAllowed);
+				}
+
 				break;
 			case 2:
 				ctRent = returningTitle();
@@ -114,7 +119,7 @@ public class Menu<T> {
 			case 4:
 				break;
 			default:
-				break;
+				return null;
 			}
 
 		}
