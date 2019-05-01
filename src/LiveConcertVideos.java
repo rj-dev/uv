@@ -9,7 +9,7 @@ public class LiveConcertVideos {
 	private int YearOfRelease;
 	private String Title;
 	private String Band;
-	private String dataOfRent;
+	private Date dataOfRent;
 
 	private ArrayList<LiveConcertVideos> LiveConcertVideosList = new ArrayList<>();
 	private static Scanner myObj;
@@ -135,15 +135,15 @@ public class LiveConcertVideos {
 	/**
 	 * @return the dataOfRent
 	 */
-	public String getDataOfRent() {
+	public Date getDataOfRent() {
 		return dataOfRent;
 	}
 
 	/**
 	 * @param dataOfRent the dataOfRent to set
 	 */
-	public void setDataOfRent(String dataOfRent) {
-		this.dataOfRent = dataOfRent;
+	public void setDataOfRent() {
+		this.dataOfRent = new Date();
 	}
 
 }

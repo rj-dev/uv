@@ -7,7 +7,7 @@ public class BoxSet {
 	private int YearofRelease;
 	private String Title;
 	private String Genre;
-	private String dataOfRent;
+	private Date dataOfRent;
 
 	private ArrayList<BoxSet> BoxSetList = new ArrayList<>();
 	private static Scanner myObj;
@@ -52,14 +52,14 @@ public class BoxSet {
 	/**
 	 * @return the dataOfRent
 	 */
-	public String getDataOfRent() {
+	public Date getDataOfRent() {
 		return dataOfRent;
 	}
 
 	/**
 	 * @param dataOfRent the dataOfRent to set
 	 */
-	public void setDataOfRent(String dataOfRent) {
-		this.dataOfRent = dataOfRent;
+	public void setDataOfRent() {
+		this.dataOfRent = new Date();
 	}
 }

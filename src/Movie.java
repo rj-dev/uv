@@ -10,7 +10,7 @@ public class Movie {
 	private String Title;
 	private String Genre;
 	private String Director;
-	private String dataOfRent;
+	private Date dataOfRent;
 
 	private ArrayList<Movie> MovieList = new ArrayList<>();
 	private static Scanner myObj;
@@ -149,15 +149,15 @@ public class Movie {
 	/**
 	 * @return the dataOfRent
 	 */
-	public String getDataOfRent() {
-		return dataOfRent;
+	public Date getDataOfRent() {
+		return this.dataOfRent;
 	}
 
 	/**
 	 * @param dataOfRent the dataOfRent to set
 	 */
-	public void setDataOfRent(String dataOfRent) {
-		this.dataOfRent = dataOfRent;
+	public void setDataOfRent() {
+		this.dataOfRent = new Date();
 	}
 
 }

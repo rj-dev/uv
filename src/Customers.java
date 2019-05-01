@@ -83,8 +83,8 @@ public class Customers<T> extends MembershipCard {
 	 */
 	protected void rentTitle(T title) {
 		if (canRentMore()) {
-			// this.rented.add(Utils.addDateRent(title));
-			this.rented.add(title);
+			this.rented.add(Utils.addDateRent(title));
+			// this.rented.add(title);
 			addPoints(10);
 
 			if (isfreeRentAllowed()) {
@@ -284,6 +284,8 @@ public class Customers<T> extends MembershipCard {
 			}
 
 			int customerCode = myObj.nextInt(); // Read user input
+			if (customerCode == 0)
+				return null;
 
 			if (customerCode > ResultSearchCustomer.size()) {
 				out.println("inform a valid code");

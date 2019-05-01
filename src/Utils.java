@@ -16,17 +16,17 @@ public final class Utils {
 
     } else if (title instanceof LiveConcertVideos) {
 
-      return String.format("%s - %s rented since: %d", title.getClass().getSimpleName(),
+      return String.format("%s - %s | rented since: %tc", title.getClass().getSimpleName(),
           ((LiveConcertVideos) title).getTitle(), ((LiveConcertVideos) title).getDataOfRent());
 
     } else if (title instanceof Movie) {
 
-      return String.format("%s - %s rented since: %d", title.getClass().getSimpleName(), ((Movie) title).getTitle(),
+      return String.format("%s - %s | rented since: %tc", title.getClass().getSimpleName(), ((Movie) title).getTitle(),
           ((Movie) title).getDataOfRent());
 
     } else {
 
-      return String.format("%s - %s rented since: %d", title.getClass().getSimpleName(), ((Music) title).getTitle(),
+      return String.format("%s - %s | rented since: %tc", title.getClass().getSimpleName(), ((Music) title).getTitle(),
           ((Music) title).getDataOfRent());
     }
   }
@@ -40,20 +40,17 @@ public final class Utils {
    */
   public static <T> T addDateRent(T title) {
 
-    DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
-    Date dataOfRent = new Date();
     if (title instanceof BoxSet) {
-      ((BoxSet) title).setDataOfRent(sdf.format(dataOfRent));
+      ((BoxSet) title).setDataOfRent();
       return title;
     } else if (title instanceof LiveConcertVideos) {
-      ((LiveConcertVideos) title).setDataOfRent(sdf.format(dataOfRent));
+      ((LiveConcertVideos) title).setDataOfRent();
       return title;
     } else if (title instanceof Movie) {
-      ((Movie) title).setDataOfRent(sdf.format(dataOfRent));
+      ((Movie) title).setDataOfRent();
       return title;
     } else {
-      ((Music) title).setDataOfRent(sdf.format(dataOfRent));
+      ((Music) title).setDataOfRent();
       return title;
     }
   }
