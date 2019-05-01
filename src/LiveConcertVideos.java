@@ -18,20 +18,6 @@ public class LiveConcertVideos {
 		initLiveConvertVideosList();
 	}
 
-	/**
-	 * @return the dataOfRent
-	 */
-	public String getDataOfRent() {
-		return dataOfRent;
-	}
-
-	/**
-	 * @param dataOfRent the dataOfRent to set
-	 */
-	public void setDataOfRent(String dataOfRent) {
-		this.dataOfRent = dataOfRent;
-	}
-
 	LiveConcertVideos(int YearOfRelease, String Title, String Band) {
 
 		this.YearOfRelease = YearOfRelease;
@@ -40,11 +26,17 @@ public class LiveConcertVideos {
 
 	}
 
+	/**
+	 * @return the Title
+	 */
 	public String getTitle() {
 		return this.Title;
 
 	}
 
+	/**
+	 * add new live concert video based on data informed
+	 */
 	public void addNewLiveConcertVideo() {
 		System.out.println("Adding new Live Concert Video\nInform title:");
 		myObj = new Scanner(System.in);
@@ -67,6 +59,9 @@ public class LiveConcertVideos {
 		System.out.println("New live concert video title has been added");
 	}
 
+	/**
+	 * start list of live concert videos
+	 */
 	protected void initLiveConvertVideosList() {
 		LiveConcertVideos movie1 = new LiveConcertVideos(2019, "Avengers", " Action ");
 		LiveConcertVideos movie2 = new LiveConcertVideos(2018, "Avengers", " Action ");
@@ -82,6 +77,11 @@ public class LiveConcertVideos {
 
 	}
 
+	/**
+	 * search for a live concert video based on data informed
+	 * 
+	 * @return LiveConcertVideos object
+	 */
 	protected LiveConcertVideos searchLiveConcertVideos() {
 
 		while (true) {
@@ -103,6 +103,12 @@ public class LiveConcertVideos {
 
 	}
 
+	/**
+	 * select live concert video chosen
+	 * 
+	 * @param ResultSearchLiveConcertVideos
+	 * @return LiveConcertVideos object
+	 */
 	protected LiveConcertVideos selectLiveConcertVideos(List<LiveConcertVideos> ResultSearchLiveConcertVideos) {
 
 		while (true) {
@@ -124,6 +130,20 @@ public class LiveConcertVideos {
 			}
 
 		}
+	}
+
+	/**
+	 * @return the dataOfRent
+	 */
+	public String getDataOfRent() {
+		return dataOfRent;
+	}
+
+	/**
+	 * @param dataOfRent the dataOfRent to set
+	 */
+	public void setDataOfRent(String dataOfRent) {
+		this.dataOfRent = dataOfRent;
 	}
 
 }

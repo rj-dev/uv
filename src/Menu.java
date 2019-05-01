@@ -55,14 +55,28 @@ public class Menu<T> {
 
 	}
 
+	/**
+	 * execute action of renting
+	 * 
+	 * @return generic Customers object
+	 */
 	private Customers<T> rentingTitle() {
 		return ct.searchCustomers();
 	}
 
+	/**
+	 * execute action of returning title
+	 * 
+	 * @return generic Customers object
+	 */
 	private Customers<T> returningTitle() {
 		return ct.searchCustomerRents();
 	}
 
+	/**
+	 * @param ct -- Customers object
+	 * @return generic object title
+	 */
 	private T titles(Customers<T> ct) {
 
 		while (true) {
@@ -106,6 +120,9 @@ public class Menu<T> {
 		}
 	}
 
+	/**
+	 * execute action of adding new title
+	 */
 	private void addNewTitle() {
 
 		System.out.println("===========================================");

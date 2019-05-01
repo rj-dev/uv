@@ -19,20 +19,6 @@ public class Movie {
 		initMovieList();
 	}
 
-	/**
-	 * @return the dataOfRent
-	 */
-	public String getDataOfRent() {
-		return dataOfRent;
-	}
-
-	/**
-	 * @param dataOfRent the dataOfRent to set
-	 */
-	public void setDataOfRent(String dataOfRent) {
-		this.dataOfRent = dataOfRent;
-	}
-
 	Movie(int YearofRelease, String Title, String Genre, String Director) {
 
 		this.YearofRelease = YearofRelease;
@@ -42,16 +28,9 @@ public class Movie {
 
 	}
 
-	public String getTitle() {
-		return this.Title;
-
-	}
-
-	public void setTitle(String title) {
-		this.Title = title;
-
-	}
-
+	/**
+	 * add new movie based on data informed
+	 */
 	public void addNewMovie() {
 		System.out.println("Adding new Movie\nInform title:");
 		myObj = new Scanner(System.in);
@@ -79,6 +58,9 @@ public class Movie {
 		System.out.println("New movie title has been added");
 	}
 
+	/**
+	 * start list of live concert movie
+	 */
 	protected void initMovieList() {
 		Movie movie1 = new Movie(2019, "Avengers", " Action ", " Renatinho");
 		Movie movie2 = new Movie(2018, "Avengers", " Action ", " Renatinho");
@@ -94,6 +76,11 @@ public class Movie {
 
 	}
 
+	/**
+	 * search for a movie based on data informed
+	 * 
+	 * @return Movie object
+	 */
 	protected Movie searchMovie() {
 
 		while (true) {
@@ -114,6 +101,12 @@ public class Movie {
 
 	}
 
+	/**
+	 * select movie chosen
+	 * 
+	 * @param ResultSearchMovie
+	 * @return Movie object
+	 */
 	protected Movie selectMovie(List<Movie> ResultSearchMovie) {
 
 		while (true) {
@@ -134,6 +127,37 @@ public class Movie {
 			}
 
 		}
+	}
+
+	/**
+	 * @return the Title
+	 */
+	public String getTitle() {
+		return this.Title;
+
+	}
+
+	/**
+	 * 
+	 * @param title the Title to set
+	 */
+	public void setTitle(String title) {
+		this.Title = title;
+
+	}
+
+	/**
+	 * @return the dataOfRent
+	 */
+	public String getDataOfRent() {
+		return dataOfRent;
+	}
+
+	/**
+	 * @param dataOfRent the dataOfRent to set
+	 */
+	public void setDataOfRent(String dataOfRent) {
+		this.dataOfRent = dataOfRent;
 	}
 
 }

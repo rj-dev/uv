@@ -3,6 +3,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public final class Utils {
+
+  /**
+   * @param <T>
+   * @param title - generic object
+   * @return generic item info
+   */
   public static <T> String fetchGenericInfo(T title) {
 
     if (title instanceof BoxSet) {
@@ -25,6 +31,13 @@ public final class Utils {
     }
   }
 
+  /**
+   * insert date at generic title object
+   * 
+   * @param <T>
+   * @param title - generic object
+   * @return title with date of rent setted up
+   */
   public static <T> T addDateRent(T title) {
 
     DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");

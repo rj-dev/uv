@@ -23,10 +23,16 @@ public class Customers<T> extends MembershipCard {
 		this.setLevel(level);
 	}
 
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return this.name;
 	}
 
+	/**
+	 * add new customer based on the data informed
+	 */
 	protected void addCustomer() {
 
 		out.println("Adding new Customer\nInform name:");
@@ -70,6 +76,11 @@ public class Customers<T> extends MembershipCard {
 
 	}
 
+	/**
+	 * execute rent title action
+	 * 
+	 * @param title
+	 */
 	protected void rentTitle(T title) {
 		if (canRentMore()) {
 			// this.rented.add(Utils.addDateRent(title));
@@ -94,6 +105,9 @@ public class Customers<T> extends MembershipCard {
 		}
 	}
 
+	/**
+	 * return title based on choose made
+	 */
 	protected void returnTitle() {
 
 		for (int i = 0; i < this.rented.size(); i++) {
@@ -121,10 +135,18 @@ public class Customers<T> extends MembershipCard {
 		out.println("Title returned, thank you!");
 	}
 
+	/**
+	 * verify if can rent
+	 * 
+	 * @return true|false
+	 */
 	private boolean canRentMore() {
 		return this.rented.size() < 4;
 	}
 
+	/**
+	 * start a list of customers
+	 */
 	protected void initCustomersList() {
 		// JSONParser parser = new JSONParser();
 		// JSONArray arr = (JSONArray) parser.parse(new
@@ -162,6 +184,11 @@ public class Customers<T> extends MembershipCard {
 
 	}
 
+	/**
+	 * search customer based on data informed
+	 * 
+	 * @return generic Customers object
+	 */
 	protected Customers<T> searchCustomers() {
 
 		while (true) {
@@ -182,6 +209,11 @@ public class Customers<T> extends MembershipCard {
 
 	}
 
+	/**
+	 * verify customers rents
+	 * 
+	 * @return generic Customers with rents
+	 */
 	protected Customers<T> searchCustomerRents() {
 
 		while (true) {
@@ -230,6 +262,12 @@ public class Customers<T> extends MembershipCard {
 
 	}
 
+	/**
+	 * select customer chosen
+	 * 
+	 * @param ResultSearchCustomer
+	 * @return Customers found
+	 */
 	protected Customers<T> selectCustomer(List<Customers<T>> ResultSearchCustomer) {
 
 		while (true) {
@@ -257,10 +295,16 @@ public class Customers<T> extends MembershipCard {
 		}
 	}
 
+	/**
+	 * @return the level
+	 */
 	public AccessLevel getLevel() {
 		return level;
 	}
 
+	/**
+	 * @param level the level to set
+	 */
 	public void setLevel(AccessLevel level) {
 		this.level = level;
 	}

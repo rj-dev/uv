@@ -16,20 +16,6 @@ public class BoxSet {
 
 	}
 
-	/**
-	 * @return the dataOfRent
-	 */
-	public String getDataOfRent() {
-		return dataOfRent;
-	}
-
-	/**
-	 * @param dataOfRent the dataOfRent to set
-	 */
-	public void setDataOfRent(String dataOfRent) {
-		this.dataOfRent = dataOfRent;
-	}
-
 	BoxSet(int YearofRelease, String Title, String Genre) {
 
 		this.YearofRelease = YearofRelease;
@@ -38,6 +24,9 @@ public class BoxSet {
 
 	}
 
+	/**
+	 * add new box set based on data informed
+	 */
 	public void addNewBoxSet() {
 		System.out.println("Adding new Box Set\nInform title:");
 		myObj = new Scanner(System.in);
@@ -58,5 +47,19 @@ public class BoxSet {
 		BoxSetList.add(newBoxSet);
 
 		System.out.println("New box set title has been added");
+	}
+
+	/**
+	 * @return the dataOfRent
+	 */
+	public String getDataOfRent() {
+		return dataOfRent;
+	}
+
+	/**
+	 * @param dataOfRent the dataOfRent to set
+	 */
+	public void setDataOfRent(String dataOfRent) {
+		this.dataOfRent = dataOfRent;
 	}
 }

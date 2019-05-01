@@ -18,20 +18,6 @@ public class Music {
 		initMusicList();
 	}
 
-	/**
-	 * @return the dataOfRent
-	 */
-	public String getDataOfRent() {
-		return dataOfRent;
-	}
-
-	/**
-	 * @param dataOfRent the dataOfRent to set
-	 */
-	public void setDataOfRent(String dataOfRent) {
-		this.dataOfRent = dataOfRent;
-	}
-
 	Music(int YearofRelease, String Title, String Genre) {
 
 		this.YearofRelease = YearofRelease;
@@ -40,11 +26,17 @@ public class Music {
 
 	}
 
+	/**
+	 * @return the Title
+	 */
 	public String getTitle() {
 		return this.Title;
 
 	}
 
+	/**
+	 * add new music based on data informed
+	 */
 	public void addNewMusic() {
 		System.out.println("Adding new Music\nInform title:");
 		myObj = new Scanner(System.in);
@@ -67,6 +59,9 @@ public class Music {
 		System.out.println("New music title has been added");
 	}
 
+	/**
+	 * start list of live concert music
+	 */
 	protected void initMusicList() {
 		Music music1 = new Music(2019, "Luma Elpido", " Action ");
 		Music music2 = new Music(2018, "Trazendo a Arca", " Action ");
@@ -82,6 +77,11 @@ public class Music {
 
 	}
 
+	/**
+	 * search for a music based on data informed
+	 * 
+	 * @return Music object
+	 */
 	protected Music searchMusic() {
 
 		while (true) {
@@ -104,6 +104,12 @@ public class Music {
 
 	}
 
+	/**
+	 * select music chosen
+	 * 
+	 * @param ResultSearchMusic
+	 * @return Music object
+	 */
 	protected Music selectMusic(List<Music> ResultSearchMusic) {
 
 		while (true) {
@@ -127,5 +133,19 @@ public class Music {
 			}
 
 		}
+	}
+
+	/**
+	 * @return the dataOfRent
+	 */
+	public String getDataOfRent() {
+		return dataOfRent;
+	}
+
+	/**
+	 * @param dataOfRent the dataOfRent to set
+	 */
+	public void setDataOfRent(String dataOfRent) {
+		this.dataOfRent = dataOfRent;
 	}
 }
