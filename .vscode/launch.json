@@ -5,27 +5,27 @@
   "version": "0.2.0",
   "configurations": [
     {
-        "type": "java",
-        "name": "CodeLens (Launch) - main",
-        "request": "launch",
-        "mainClass": "main",
-        "projectName": "Ultra-Vision"
+      "type": "java",
+      "name": "CodeLens (Launch) - main",
+      "request": "launch",
+      "mainClass": "main",
+      "projectName": "Ultra-Vision"
     },
     {
-        "type": "java",
-        "name": "Debug (Launch) - Current File",
-        "request": "launch",
-        "mainClass": "${file}"
+      "type": "java",
+      "name": "Debug (Launch) - Current File",
+      "request": "launch",
+      "mainClass": "${file}"
     },
     {
-        "type": "java",
-        "name": "Debug (Launch) - External Terminal",
-        "request": "launch",
-        "cwd": "${workspaceFolder}",
-        "console": "integratedTerminal",
-        "stopOnEntry": false,
-        "mainClass": "",
-        "args": ""
+      "type": "java",
+      "name": "Debug (Launch) - Integrated Terminal",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "stopOnEntry": false,
+      "mainClass": "",
+      "args": ""
     }
-]
+  ]
 }
