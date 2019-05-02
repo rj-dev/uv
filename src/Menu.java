@@ -103,7 +103,7 @@ public class Menu<T> {
 			case 3:
 				return (T) movies.searchMovie();
 			case 4:
-				break;
+				return (T) boxSets.searchBoxSet();
 			default:
 				return null;
 			}

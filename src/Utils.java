@@ -12,7 +12,8 @@ public final class Utils {
   public static <T> String fetchGenericInfo(T title) {
 
     if (title instanceof BoxSet) {
-      return "BoxSet";
+      return String.format("%s - %s | rented since: %tc", title.getClass().getSimpleName(), ((BoxSet) title).getTitle(),
+          ((BoxSet) title).getDataOfRent());
 
     } else if (title instanceof LiveConcertVideos) {
 

@@ -76,6 +76,9 @@ public class Customers<T> extends MembershipCard {
 
 	}
 
+	/**
+	 * update customer subscription plan
+	 */
 	protected void updateCustomer() {
 		Customers<T> ct = searchCustomers("updating");
 		List<AccessLevel> alList = new ArrayList<>();
