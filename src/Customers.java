@@ -76,6 +76,40 @@ public class Customers<T> extends MembershipCard {
 
 	}
 
+	protected void updateCustomer() {
+		Customers<T> ct = searchCustomers("updating");
+		List<AccessLevel> alList = new ArrayList<>();
+		alList.add(AccessLevel.ML);
+		alList.add(AccessLevel.VL);
+		alList.add(AccessLevel.TV);
+		alList.add(AccessLevel.PR);
+
+		out.println(ct.name + " is subscribed as " + ct.level.label + "\nYou can change to:");
+
+		out.println("1 -> " + AccessLevel.ML.label);
+		out.println("2 -> " + AccessLevel.VL.label);
+		out.println("3 -> " + AccessLevel.TV.label);
+		out.println("4 -> " + AccessLevel.PR.label);
+
+		myObj = new Scanner(System.in);
+
+		while (!myObj.hasNextInt())
+			myObj.next();
+
+		int option = myObj.nextInt(); // Read user input
+
+		if (option == 0 || option > 4)
+			return;
+
+		if (ct.level == alList.get(option - 1)) {
+			out.println("Customer has kept the same subscription plan");
+			return;
+		}
+
+		ct.setLevel(alList.get(option - 1));
+		out.println(ct.name + " was subscripted to the plan " + alList.get(option - 1).label);
+	}
+
 	/**
 	 * execute rent title action
 	 * 
@@ -189,11 +223,11 @@ public class Customers<T> extends MembershipCard {
 	 * 
 	 * @return generic Customers object
 	 */
-	protected Customers<T> searchCustomers() {
+	protected Customers<T> searchCustomers(String action) {
 
 		while (true) {
 
-			out.println("Inform the name of the customer for renting");
+			out.println("Inform the name of the customer for " + action);
 			myObj = new Scanner(System.in);
 			String name = myObj.nextLine();
 

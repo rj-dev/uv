@@ -33,7 +33,7 @@ public class Menu<T> {
 
 			switch (option) {
 			case 1:
-				ctRent = rentingTitle();
+				ctRent = ct.searchCustomers("renting");
 				if (ctRent != null) {
 					T titlesAllowed = titles(ctRent);
 					if (titlesAllowed != null)
@@ -42,7 +42,7 @@ public class Menu<T> {
 
 				break;
 			case 2:
-				ctRent = returningTitle();
+				ctRent = ct.searchCustomerRents();
 				if (ctRent != null)
 					ctRent.returnTitle();
 				break;
@@ -51,6 +51,9 @@ public class Menu<T> {
 				break;
 			case 4:
 				ct.addCustomer();
+				break;
+			case 5:
+				ct.updateCustomer();
 				break;
 			default:
 				break;
@@ -61,27 +64,10 @@ public class Menu<T> {
 	}
 
 	/**
-	 * execute action of renting
-	 * 
-	 * @return generic Customers object
-	 */
-	private Customers<T> rentingTitle() {
-		return ct.searchCustomers();
-	}
-
-	/**
-	 * execute action of returning title
-	 * 
-	 * @return generic Customers object
-	 */
-	private Customers<T> returningTitle() {
-		return ct.searchCustomerRents();
-	}
-
-	/**
 	 * @param ct -- Customers object
 	 * @return generic object title
 	 */
+	@SuppressWarnings("unchecked")
 	private T titles(Customers<T> ct) {
 
 		while (true) {
