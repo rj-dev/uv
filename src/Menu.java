@@ -97,13 +97,13 @@ public class Menu<T> {
 
 			switch (option) {
 			case 1:
-				return (T) musics.searchMusic();
+				return (T) musics.searchTitle();
 			case 2:
-				return (T) liveConcertVideos.searchLiveConcertVideos();
+				return (T) liveConcertVideos.searchTitle();
 			case 3:
-				return (T) movies.searchMovie();
+				return (T) movies.searchTitle();
 			case 4:
-				return (T) boxSets.searchBoxSet();
+				return (T) boxSets.searchTitle();
 			default:
 				return null;
 			}
@@ -133,16 +133,16 @@ public class Menu<T> {
 
 		switch (option) {
 		case 1:
-			musics.addNewMusic();
+			musics.addNewTitle();
 			break;
 		case 2:
-			liveConcertVideos.addNewLiveConcertVideo();
+			liveConcertVideos.addNewTitle();
 			break;
 		case 3:
-			movies.addNewMovie();
+			movies.addNewTitle();
 			break;
 		case 4:
-			boxSets.addNewBoxSet();
+			boxSets.addNewTitle();
 			break;
 		default:
 			return;
