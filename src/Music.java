@@ -2,18 +2,12 @@ import java.util.Scanner;
 
 public class Music extends Title {
 
-	private String Genre;
-
-	private static Scanner myObj;
-
 	Music() {
 		initMusicList();
 	}
 
 	Music(int YearofRelease, String Title, String Genre) {
-		super(YearofRelease, Title);
-		this.Genre = Genre;
-
+		super(YearofRelease, Title, Genre);
 	}
 
 	/**

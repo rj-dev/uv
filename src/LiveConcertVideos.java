@@ -1,14 +1,6 @@
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class LiveConcertVideos extends Title {
-
-	private String Band;
-
-	private static Scanner myObj;
 
 	LiveConcertVideos() {
 		initLiveConvertVideosList();
@@ -16,7 +8,7 @@ public class LiveConcertVideos extends Title {
 
 	LiveConcertVideos(int YearOfRelease, String Title, String Band) {
 		super(YearOfRelease, Title);
-		this.Band = Band;
+		this.setBand(Band);
 	}
 
 	/**

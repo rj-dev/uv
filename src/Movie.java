@@ -2,19 +2,12 @@ import java.util.Scanner;
 
 public class Movie extends Title {
 
-	private String Genre;
-	private String Director;
-
-	private static Scanner myObj;
-
 	protected Movie() {
 		initMovieList();
 	}
 
 	Movie(int YearofRelease, String Title, String Genre, String Director) {
-		super(YearofRelease, Title);
-		this.Genre = Genre;
-		this.Director = Director;
+		super(YearofRelease, Title, Genre, Director);
 	}
 
 	/**

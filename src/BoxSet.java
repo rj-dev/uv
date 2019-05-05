@@ -2,16 +2,12 @@ import java.util.Scanner;
 
 public class BoxSet extends Title {
 
-	private String Genre;
-	private static Scanner myObj;
-
 	BoxSet() {
 		initBoxSetList();
 	}
 
 	BoxSet(int YearofRelease, String Title, String Genre) {
-		super(YearofRelease, Title);
-		this.Genre = Genre;
+		super(YearofRelease, Title, Genre);
 	}
 
 	/**

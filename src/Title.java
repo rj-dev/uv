@@ -7,10 +7,13 @@ abstract class Title {
 
     private int YearofRelease;
     private String Title;
+    private String Genre;
+    private String Director;
+    private String Band;
     private Date dataOfRent;
 
     protected ArrayList<Title> TitleList = new ArrayList<>();
-    private static Scanner myObj;
+    protected static Scanner myObj;
 
     abstract void addNewTitle();
 
@@ -23,15 +26,30 @@ abstract class Title {
         this.Title = Title;
     }
 
+    Title(int YearofRelease, String Title, String Genre) {
+        this.YearofRelease = YearofRelease;
+        this.Title = Title;
+        this.Genre = Genre;
+    }
+
+    Title(int YearofRelease, String Title, String Genre, String Director) {
+        this.YearofRelease = YearofRelease;
+        this.Title = Title;
+        this.Genre = Genre;
+        this.Director = Director;
+    }
+
     /**
      * search title based on data informed
      * 
+     * @param <T>
+     * 
      * @return Title object
      */
-    protected Title searchTitle() {
+    protected <T> Title searchTitle() {
 
         while (true) {
-            System.out.println("Inform the name of the box set");
+            System.out.println("Inform the name of the " + this.getClass().getName());
             myObj = new Scanner(System.in);
 
             String term = myObj.nextLine();
@@ -42,7 +60,7 @@ abstract class Title {
             if (ResultTitle.size() > 0) {
                 return selectTitle(ResultTitle);
             } else {
-                System.out.println("Title - " + term + " - not found try another name");
+                System.out.println(this.getClass().getName() + " - " + term + " - not found try another name");
             }
 
         }
@@ -75,6 +93,13 @@ abstract class Title {
             }
 
         }
+    }
+
+    /**
+     * @param band the band to set
+     */
+    public void setBand(String band) {
+        this.Band = band;
     }
 
     /**
